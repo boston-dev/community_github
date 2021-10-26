@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>amin</title>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <el-form :model="login" status-icon  ref="loginForm" label-width="100px" class="demo-ruleForm">
+                    <el-form-item label="邮箱" prop="email"
+                                  :rules="[
+                                  { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+                                  { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+                                ]"
+                    >
+                        <el-input  v-model="login.email" autocomplete="off"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password"
+                                  :rules="[
+                                  { required: true, message: '请输入密码', trigger: 'blur' },
+                                ]"
+                    >
+                        <el-input type="password" v-model="login.password"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="loginFn">登录</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="box">
+                <el-form :model="cat" status-icon  ref="loginForm" label-width="100px" class="demo-ruleForm">
+                    <el-form-item label="父级分类" prop="parentId"
+                    >
+                        <el-select v-model="cat.parentId" clearable placeholder="请选择">
+                            <el-option
+                                    v-for="item in catAll"
+                                    :key="item._id"
+                                    :label="item.title"
+                                    :value="item._id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="分类列表" prop="parentId"
+                    >
+                        <el-tag
+                                :key="`${item._id}tag`"
+                                v-for="item in catAll"
+                                closable
+                                :disable-transitions="false"
+                                @close="deCat(item)">
+                            {{item.title}}
+                        </el-tag>
+                    </el-form-item>
+                    <el-form-item label="分类标题" prop="title"
+                                  :rules="[
+                                  { required: true, message: '必填', trigger: 'blur' },
+                                ]"
+                    >
+                        <el-input  v-model="cat.title" autocomplete="off"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="上传测试"
+
+                    >
+
+                        <el-upload
+                                class="upload-demo"
+                                :action="`/api/users/upload`"
+                                :on-preview="handlePreview"
+                                :on-remove="handleRemove"
+                                ref="bookUploader"
+                                :on-success="uploadOk"
+                                :limit="1"
+                                :file-list="fileList"
+                                list-type="picture">
+                            <el-button size="small" type="primary">'点击上传'</el-button>
+                            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                        </el-upload>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="catFn">创建</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    const http = axios.create({
+        timeout: 60000,
+        baseURL:'/api',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    http.interceptors.response.use(res => {
+        if(res.data.code !== 200){
+            ELEMENT.Message.error(res.data.msg);
+        }
+        return res.data
+    })
+    // http.post('/api/users').then(res =>{
+    //     console.log(res)
+    // })
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                catAll:[],
+                login:{
+                    email:'',
+                    password:''
+                },
+                cat:{
+                    title:'',
+                    parentId:'',
+                },
+                visible: false,
+                pic:'',
+                fileList:[],
+            }
+        },
+        methods:{
+            loginFn(){
+                http.post('/users/join',this.login)
+            },
+            catFn(){
+                http.post('/cats/create',this.cat).then(res =>{
+                    this.getCat()
+                })
+            },
+            getCat(){
+                http.get('/cats').then(res =>{
+                    if(res.code === 200){
+                        this.catAll=res.result
+                    }
+                })
+            },
+            deCat(item){
+                http.post('/cats/remove',item).then(res =>{
+                    this.getCat()
+                })
+            },
+            uploadOk(res,fileList){
+                if(res.code === 200){
+                    this.pic=res.url
+                }
+            },
+            handleRemove(file, fileList) {
+                this.pic=''
+            },
+            handlePreview(file) {
+                console.log(file);
+            },
+        },
+        created(){
+           this.getCat()
+        }
+    })
+</script>
+</html>

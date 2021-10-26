@@ -1,0 +1,124 @@
+{
+  "router": {
+    "location": {
+      "pathname": "/a/1190000040050182",
+      "search": "",
+      "hash": "",
+      "query": {},
+      "key": "x87w0h"
+    },
+    "action": "POP"
+  },
+  "@@dva": 0,
+  "action": {
+    "1190000040050182": {
+      "votes": 6,
+      "isLiked": false,
+      "bookmarks": 4,
+      "bookmarkState": false
+    }
+  },
+  "article": {
+    "articles": {
+      "rows": [],
+      "size": 0,
+      "offset": 0,
+      "hasMore": true,
+      "error": false,
+      "loading": false,
+      "isStopLoad": false,
+      "cutLoadNum": 1,
+      "isLoadedFirstRecommend": false,
+      "query": ""
+    },
+    "currentTab": ""
+  },
+  "articleDetail": {
+    "artDetail": {
+      "1190000040050182": {
+        "title": "前端 - vuex的超详细讲解和具体使用细节记录（篇幅略长，建议收藏）_个人文章",
+        "keywords": "前端,vue.js",
+        "description": "Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。",
+        "article": {
+          "id": 1190000040050182,
+          "title": "vuex的超详细讲解和具体使用细节记录（篇幅略长，建议收藏）",
+          "cover": "/img/bVbfUnd?spec=cover",
+          "tags_list": "1040000000089899,1040000004003243",
+          "user_id": 1030000038961617,
+          "blog_id": 0,
+          "excerpt": "Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。",
+          "parsed_text": "",
+          "is_bookmarked": false,
+          "is_liked": false,
+          "created": 1621764491,
+          "modified": 1621765209,
+          "real_views": 203,
+          "real_unique_views": 128,
+          "votes": 6,
+          "bookmarks": 4,
+          "status": 0,
+          "origin_url": "",
+          "article_type": 1,
+          "license": "1",
+          "langs": [
+            "en"
+          ],
+          "comments": 0,
+          "tags": [
+            {
+              "id": 1040000000089899,
+              "url": "/t/%E5%89%8D%E7%AB%AF",
+              "name": "前端",
+              "icon_url": ""
+            },
+            {
+              "id": 1040000004003243,
+              "url": "/t/vue.js",
+              "name": "vue.js",
+              "icon_url": ""
+            }
+          ],
+          "user": {
+            "id": 1030000038961617,
+            "name": "水冗水孚",
+            "avatar_url": "https://avatar-static.segmentfault.com/364/925/3649250322-6000f05816519_huge128",
+            "url": "/u/shuirongshui",
+            "rank": 50,
+            "rankWord": "50",
+            "is_followed": false,
+            "excerpt": "<p>每一个不曾起舞的日子，都是对生命的辜负</p>",
+            "followers": 5,
+            "articles": 55,
+            "user_auth": null
+          },
+          "status_key": "available"
+        },
+        "blog": null,
+        "actions": [],
+        "member_actions": [],
+        "article_types": {
+          "1": "原创",
+          "2": "转载",
+          "3": "翻译"
+        },
+        "pay_info": null,
+        "extra": {
+          "reason": null,
+          "operator": null,
+          "operator_time": null
+        },
+        "tag": {
+          "name": "前端",
+          "url": "/t/%E5%89%8D%E7%AB%AF",
+          "icon_url": ""
+        },
+        "isServerLoaded": true
+      }
+    },
+    "alertMsg": {
+      "showAlert": false,
+      "msg": ""
+    },
+    "articleRelated": []
+  }
+}

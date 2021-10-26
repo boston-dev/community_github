@@ -1,0 +1,15 @@
+{
+    "responeTpl":{
+        "code":200,
+        "msg":"成功",
+        "result":{
+
+        }
+    },
+    "secret": "5eqyj7oX6o9o23RSgKYFTw",
+    "limit":40,
+    "show": {
+        "hidden": 0
+    },
+    "uploadFix": [".jpg",".png",".docx",".pptx"]
+}
